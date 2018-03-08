@@ -15,12 +15,16 @@
 
   var trainName = "";
 	var destination = "";
-  var frequency = "";
+  var frequency = 0;
   var firstTrain = 0;
+
 
   
 
-$("#submit").on("click", function() {
+$("#submit").on("click", function(event) {
+
+  event.preventDefault()
+
 
   
 
@@ -55,6 +59,7 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
   console.log(sp.firstTrain);
 
 
+
    var firstTrainCalc = moment(firstTrain, "HH:mm").subtract(1, "years");
        console.log(firstTrainCalc);
 
@@ -82,5 +87,6 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
       console.log("Errors handled: " + errorObject.code);
     });
 
+$("#train-schedule").text(sp.trainName);
 
 
